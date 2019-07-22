@@ -28,7 +28,7 @@ end
 
 function _prompt_color_for_status
   if test $argv[1] -eq 0
-    echo white
+    echo black
   else
     echo red
   end
@@ -37,7 +37,7 @@ end
 function fish_prompt
   set -l last_status $status
 
-  _print_in_color "$USER@$hostname:"(prompt_pwd) white
+  _print_in_color "$USER@$hostname:"(prompt_pwd) black
 
   __fish_git_prompt " %s"
   if test [(id -u) != 0]
