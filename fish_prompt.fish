@@ -37,7 +37,8 @@ end
 function fish_prompt
   set -l last_status $status
 
-  _print_in_color "| $USER@$hostname: |"(prompt_pwd) black
+  set workingDir (pwd)
+  _print_in_color "| $USER@$hostname:$workingDir |" black
 
   __fish_git_prompt " %s"
   if test [(id -u) != 0]
