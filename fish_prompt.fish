@@ -6,7 +6,7 @@ set __fish_git_prompt_showupstream 'yes'
 set __fish_git_prompt_color_branch 3D8BC2
 set __fish_git_prompt_color_dirtystate FCBC47
 set __fish_git_prompt_color_stagedstate black
-set __fish_git_prompt_color_upstream cyan
+set __fish_git_prompt_color_upstream black
 
 # Git Characters
 set __fish_git_prompt_char_dirtystate '*'
