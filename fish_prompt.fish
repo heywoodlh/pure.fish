@@ -38,9 +38,19 @@ function fish_prompt
   set -l last_status $status
 
   set workingDir (pwd)
-  _print_in_color "| $USER@$hostname:$workingDir |" black
+  set baseName (basename $workingDir)
+
+  set longUpper "| $USER@$hostname:$workingDir |"
+  set shortUpper "| $USER@$hostname:/.../$baseName |"
+  
+  if test (echo "$longUpper" | wc -c) -gt $COLUMNS
+    _print_in_color $shortUpper black
+  else
+    _print_in_color $longUpper black
+  end
 
   __fish_git_prompt " %s"
+  
   if test [(id -u) != 0]
     _print_in_color "\n|\$ " (_prompt_color_for_status $last_status)
   else
