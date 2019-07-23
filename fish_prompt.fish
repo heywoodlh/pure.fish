@@ -1,12 +1,16 @@
 set fish_prompt_pwd_dir_length 0
 
+set primaryColor "white"
+set gitColor "green"
+set errorColor "ff6666"
+
 # Git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showupstream 'yes'
-set __fish_git_prompt_color_branch 3D8BC2
-set __fish_git_prompt_color_dirtystate FCBC47
-set __fish_git_prompt_color_stagedstate black
-set __fish_git_prompt_color_upstream black
+set __fish_git_prompt_color_branch "$gitColor"
+set __fish_git_prompt_color_dirtystate "$gitColor"
+set __fish_git_prompt_color_stagedstate "$gitColor"
+set __fish_git_prompt_color_upstream "$gitColor"
 
 # Git Characters
 set __fish_git_prompt_char_dirtystate '*'
@@ -28,9 +32,9 @@ end
 
 function _prompt_color_for_status
   if test $argv[1] -eq 0
-    echo black
+    echo "$primaryColor"
   else
-    echo red
+    echo "$errorColor"
   end
 end
 
@@ -44,14 +48,14 @@ function fish_prompt
   set shortUpper "| $USER@$hostname:/.../$baseName |"
   
   if test (echo "$longUpper" | wc -c) -gt $COLUMNS
-    _print_in_color $shortUpper black
+    _print_in_color $shortUpper $primaryColor
   else
-    _print_in_color $longUpper black
+    _print_in_color $longUpper $primaryColor
   end
 
   __fish_git_prompt " %s"
   
-  if test [(id -u) != 0]
+  if test (id -u) != 0
     _print_in_color "\n|\$ " (_prompt_color_for_status $last_status)
   else
     _print_in_color "\n|# " (_prompt_color_for_status $last_status)
