@@ -28,7 +28,7 @@ end
 
 function _prompt_color_for_status
   if test $argv[1] -eq 0
-    echo magenta
+    echo white 
   else
     echo red
   end
